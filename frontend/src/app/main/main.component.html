@@ -1,3 +1,18 @@
-<p>
-  The Main Page!
-</p>
+<div class="navbar">
+  <!-- TODO Make the navbar nice-->
+  <button (click)="switchView('home')">
+    HOME
+  </button>
+  <button (click)="switchView('profile')">
+    PROFILE
+  </button>
+</div>
+
+
+<div *ngIf="viewHome">
+  <app-home></app-home>
+</div>
+
+<div *ngIf="viewProfile">
+  <app-profile></app-profile>
+</div>
