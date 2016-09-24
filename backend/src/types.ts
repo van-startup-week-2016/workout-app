@@ -18,19 +18,23 @@ export interface appRoutes {
 
 /**
  * A `user`.
+ *
+ * TABLE
  */
 export interface user {
   _id?: mongoID;
   email: string;
   password?: string;
-  level?: difficulty;
   friends?: mongoID[]; //default is empty list
   pictureURL?: string;
   badges?: mongoID[];
   workouts?: workout[];
   preferences?: preferences;
   totalPoints?: number; // starts at 0
-  lastTextDate: Date;
+  currentWorkout?: {
+    lastTextDate: Date;
+    workout: workout;
+  }
 }
 
 /**
@@ -38,17 +42,9 @@ export interface user {
  */
 export interface workout {
   date: Date;
-  exercise: exercise;
+  exercise: mongoID;
   numberOfReps: number;
-}
-
-/**
- * Difficulty levels for an exercise.
- */
-export enum difficulty {
-  easy = 1,
-  medium,
-  hard
+  completed: boolean;
 }
 
 /**
@@ -64,26 +60,33 @@ export enum exerciseType {
  * User preferences
  */
 export interface preferences {
-  difficulty: difficulty;
-  exerciseTypes: exerciseType[];
   minutesBeforeAnotherWorkout: number;
+  exercises: {
+    mongoID: mongoID;
+    repNumber: number;
+  }[];
 
   // TODO: add time preferences
 }
 
 /**
  * An exercise.
+ *
+ * TABLE
  */
 export interface exercise {
+  _id: mongoID;
   name: string; //e.g. "pushup"
   buildText: (numberOfReps: number) => string; // eg. functions returns "Do <numberOfReps> pushups"
-  difficulty: difficulty;
   howToLink: string; // links to website explaining exercise form
   types: exerciseType[];
+  insanelyHard: boolean;
 }
 
 /**
  * A badge that a user is in the progress of earning.
+ *
+ * TABLE
  */
 export interface badge {
   _id?: mongoID;
