@@ -51,7 +51,7 @@ export interface workout {
 export enum exerciseType {
   upperBody = 1,
   lowerBody,
-  cardio
+  core
 }
 
 /**
