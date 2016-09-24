@@ -27,6 +27,7 @@
     "ramda": "^0.21.0",
     "request": "^2.69.0",
     "systemjs": "^0.19.16",
+    "twilio": "^2.11.0",
     "yargs": "^3.32.0"
   },
   "devDependencies": {
