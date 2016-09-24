@@ -2,7 +2,9 @@
 
 import { Handler } from "express";
 
-
+/**
+ * A mongo ID is a string.
+ */
 type mongoID = string;
 
 /**
@@ -19,17 +21,16 @@ export interface appRoutes {
  */
 export interface user {
   _id?: mongoID;
-  name: string;
   email: string;
-  password: string;
-  level: number; //default level is 1
-  friends: mongoID[]; //default is empty list
-  pictureURL: string;
-  badges: mongoID[];
-  workoutStats: workout[];
-  preferences: preferences;
-  numberOfWorkoutsDoneToday: number;
-  totalPoints: number; // default is 0
+  password?: string;
+  level?: difficulty;
+  friends?: mongoID[]; //default is empty list
+  pictureURL?: string;
+  badges?: mongoID[];
+  workouts?: workout[];
+  preferences?: preferences;
+  totalPoints?: number; // starts at 0
+  lastTextDate: Date;
 }
 
 /**
@@ -38,40 +39,47 @@ export interface user {
 export interface workout {
   date: Date;
   exercise: exercise;
-  numberOfReps: number; //e.g. 23
+  numberOfReps: number;
+}
 
+/**
+ * Difficulty levels for an exercise.
+ */
+export enum difficulty {
+  easy = 1,
+  medium,
+  hard
+}
+
+/**
+ * An exercise can be 1/multiple types.
+ */
+export enum exerciseType {
+  upperBody = 1,
+  lowerBody,
+  cardio
 }
 
 /**
  * User preferences
  */
 export interface preferences {
-  difficulty: number; // 1 is easy, 2 is medium, 3 is hard
-  upperBody: boolean; // does the user want to do upper body exercises?
-  lowerBody: boolean; // does the user want to do lower body exercises?
-  cardio: boolean; // does the user want to do cardio?
-  numberOfWorkoutsPerDay: number;
+  difficulty: difficulty;
+  exerciseTypes: exerciseType[];
+  minutesBeforeAnotherWorkout: number;
 
   // TODO: add time preferences
 }
 
 /**
- * An exercise
+ * An exercise.
  */
 export interface exercise {
   name: string; //e.g. "pushup"
-  difficulty: number; // 1 is easy, 2 is medium, 3 is hard
-  description: string;
-  type: string; // either "upper body" or "lower body" or "cardio"
-}
-
-/**
- * User's weekly progress.
- */
-export interface weekly_progress {
-  progress: number; // scale of 0-10, 0 means no progress, 10 means user has finished all of the week's tasks
-  date: Date;
-
+  buildText: (numberOfReps: number) => string; // eg. functions returns "Do <numberOfReps> pushups"
+  difficulty: difficulty;
+  howToLink: string; // links to website explaining exercise form
+  types: exerciseType[];
 }
 
 /**
@@ -82,7 +90,7 @@ export interface badge {
   pictureURL: string;
   name: string;
   description: string;
-  progress: number; // scale of 0-10, 0 means no progress, 10 means user has earned the badge
+  // requirement: TODO (frontend must be able to calculate if requirement is met)
 }
 
 
