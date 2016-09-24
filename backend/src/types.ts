@@ -3,6 +3,8 @@
 import { Handler } from "express";
 
 
+type mongoID = string;
+
 /**
  * Format of the application's routes.
  */
@@ -16,10 +18,74 @@ export interface appRoutes {
  * A `user`.
  */
 export interface user {
-  _id?: string;
+  _id?: mongoID;
+  name: string;
   email: string;
-  password?: string;
+  password: string;
+  level: number; //default level is 1
+  friends: mongoID[]; //default is empty list
+  pictureURL: string;
+  badges: mongoID[];
+  workoutStats: workout[];
+  preferences: preferences;
+  numberOfWorkoutsDoneToday: number;
+  totalPoints: number; // default is 0
 }
+
+/**
+ * A single workout the user has done.
+ */
+export interface workout {
+  date: Date;
+  exercise: exercise;
+  numberOfReps: number; //e.g. 23
+
+}
+
+/**
+ * User preferences
+ */
+export interface preferences {
+  difficulty: number; // 1 is easy, 2 is medium, 3 is hard
+  upperBody: boolean; // does the user want to do upper body exercises?
+  lowerBody: boolean; // does the user want to do lower body exercises?
+  cardio: boolean; // does the user want to do cardio?
+  numberOfWorkoutsPerDay: number;
+
+  // TODO: add time preferences
+}
+
+/**
+ * An exercise
+ */
+export interface exercise {
+  name: string; //e.g. "pushup"
+  difficulty: number; // 1 is easy, 2 is medium, 3 is hard
+  description: string;
+  type: string; // either "upper body" or "lower body" or "cardio"
+}
+
+/**
+ * User's weekly progress.
+ */
+export interface weekly_progress {
+  progress: number; // scale of 0-10, 0 means no progress, 10 means user has finished all of the week's tasks
+  date: Date;
+
+}
+
+/**
+ * A badge that a user is in the progress of earning.
+ */
+export interface badge {
+  _id?: mongoID;
+  pictureURL: string;
+  name: string;
+  description: string;
+  progress: number; // scale of 0-10, 0 means no progress, 10 means user has earned the badge
+}
+
+
 
 /**
  * A namespace for encapsulating all structures.
