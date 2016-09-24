@@ -1,6 +1,6 @@
 /// Module for sending texts to users to do their workouts!
 
-import { user, exercise } from './types';
+import { user, exercise, workout } from './types';
 import { collection } from './db';
 import { sendMessage } from './message.ts';
 import { exercises } from './exercises';
@@ -19,8 +19,6 @@ const getRandomBetween = (num1: number, num2: number) => {
 
 /**
  * Checks if `date` is more than `xMinutes` minutes old.
- *
- * TODO CHECK WROTE TIRED AS FUCK.
  */
 const moreThanXMinutesOld = (xMinutes: number, date: Date): boolean => {
   let milliSeconds = xMinutes * 60 * 1000;
@@ -30,26 +28,89 @@ const moreThanXMinutesOld = (xMinutes: number, date: Date): boolean => {
 }
 
 /**
+ * Sends the user their `currentWorkout`.
+ */
+const sendWorkout = (user: user): void => {
+  const exercise: exercise = exercises[user.currentWorkout.exerciseID];
+  const textBody = exercise.buildText(user.currentWorkout.numberOfReps);
+
+  sendMessage(user.phone, textBody);
+}
+
+/**
+ * Gets a workout for a user based on their preferences.
+ */
+const getWorkoutForUser = (user: user, randomMinutesBeforeText: number): workout => {
+  const dateWillSendText = new Date((new Date().getTime()) + minToMilli(randomMinutesBeforeText));
+
+  // First thing, randomely pick an exercise from the users list.
+  // Look at the reps suggested, maybe +- a bit.
+  const numberOfPotentialExercises = user.preferences.exercises.length;
+  const randomIndex = getRandomBetween(1, numberOfPotentialExercises) - 1;
+  const uniqueKey: string = user.preferences.exercises[randomIndex].uniqueKey;
+  const repNumber: number = user.preferences.exercises[randomIndex].repNumber;
+  const repDelta: number = Math.floor(repNumber/10) + 1;
+  const randomRepNumber: number = getRandomBetween(repNumber - repDelta, repNumber + repDelta);
+
+  const workout: workout = {
+    date: dateWillSendText,
+    exerciseID: uniqueKey,
+    numberOfReps: randomRepNumber,
+    completed: false
+  };
+
+  return workout;
+}
+
+/**
+ * Convert minutes to milliseconds.
+ */
+const minToMilli = (numberOfMinutes: number) => {
+  return numberOfMinutes * 60 * 1000;
+}
+
+/**
  * Will do a scan for users that need a workout, texting them accordingly.
  */
 const scanForUsersNeedingAWorkout = () => {
   collection('users')
   .then((Users) => {
+    /**
+     * Sends a text to the user with a random delay.
+     */
+    const sendTextWithRandomDelay = (user: user) => {
+      const minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || defaultMinutesBeforeAnotherWorkout;
+      const randomMinutesBeforeText = getRandomBetween(1, minutesBeforeAnotherWorkout / 2);
+
+      user.currentWorkout = getWorkoutForUser(user, randomMinutesBeforeText);
+
+      Users.save(user)
+      .then(() => {
+        setTimeout(sendWorkout(user), minToMilli(randomMinutesBeforeText));
+      });
+    };
+
     // Get all users.
     Users.find({}).toArray()
     .then((arrayOfUsers: user[]) => {
       for(let user of arrayOfUsers) {
-        let minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || 60;
-        if(moreThanXMinutesOld(minutesBeforeAnotherWorkout, user.lastTextDate)) {
-          // User ready for another text.
+        // If they have never had a workout...
+        if(user.currentWorkout == undefined) {
+          sendTextWithRandomDelay(user);
+          continue;
+        }
 
-          // TODO TMMRW.
-          // let validExercises = filterExercisesByDifficulty...
-          // get random number between 0 and validExercises.length - 1
-          // get that exercise
-          // figure out number of reps to send user
-          // use `buildText` to build the text
-          // use `sendMessage` to send it to the user
+        let minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || defaultMinutesBeforeAnotherWorkout;
+        // If the time has elapsed for their previous workout...
+        if(moreThanXMinutesOld(minutesBeforeAnotherWorkout, user.currentWorkout.date)) {
+          // If they did complete it, it has already been copied.
+          if(user.currentWorkout.completed == true) {
+            sendTextWithRandomDelay(user);
+            continue;
+          }
+          // If they didn't complete it, we must move it to their workouts.
+          user.workouts.push(user.currentWorkout);
+          sendTextWithRandomDelay(user);
         }
       }
     })
@@ -60,5 +121,5 @@ const scanForUsersNeedingAWorkout = () => {
  * Runs the `scanForUsersNeedingAWorkout` every `minuteIntervalForScan` minutes.
  */
 export const startCoaching = (minuteIntervalForScan: number) => {
-  setInterval(scanForUsersNeedingAWorkout, minuteIntervalForScan * 60 * 1000);
+  setInterval(scanForUsersNeedingAWorkout, minToMilli(minuteIntervalForScan));
 };

@@ -10,5 +10,6 @@ import { startCoaching } from './coach';
 const minutesBeforeRescan = 5;
 
 server.listen(APP_CONFIG.app.port);
-startCoaching(minutesBeforeRescan);
 console.log(`Running app on port ${APP_CONFIG.app.port}`);
+startCoaching(minutesBeforeRescan);
+console.log("Coach is awake!");

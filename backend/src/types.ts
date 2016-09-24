@@ -25,16 +25,14 @@ export interface user {
   _id?: mongoID;
   email: string;
   password?: string;
+  phone?: string;
   friends?: mongoID[]; //default is empty list
   pictureURL?: string;
   badges?: mongoID[];
   workouts?: workout[];
   preferences?: preferences;
   totalPoints?: number; // starts at 0
-  currentWorkout?: {
-    lastTextDate: Date;
-    workout: workout;
-  }
+  currentWorkout?: workout;
 }
 
 /**
@@ -42,7 +40,7 @@ export interface user {
  */
 export interface workout {
   date: Date;
-  exercise: mongoID;
+  exerciseID: string;
   numberOfReps: number;
   completed: boolean;
 }
@@ -62,7 +60,7 @@ export enum exerciseType {
 export interface preferences {
   minutesBeforeAnotherWorkout: number;
   exercises: {
-    mongoID: mongoID;
+    uniqueKey: string;
     repNumber: number;
   }[];
 
@@ -72,16 +70,22 @@ export interface preferences {
 /**
  * An exercise.
  *
- * TABLE
+ * Not in the DB, stored statically in module `exercise`.
  */
 export interface exercise {
-  _id: mongoID;
   name: string; //e.g. "pushup"
   buildText: (numberOfReps: number) => string; // eg. functions returns "Do <numberOfReps> pushups"
   howToLink: string; // links to website explaining exercise form
   types: exerciseType[];
   insanelyHard: boolean;
 }
+
+/**
+ * A hash of exercises.
+ */
+export interface exerciseHash {
+  [uniqueKey: string]: exercise
+};
 
 /**
  * A badge that a user is in the progress of earning.
