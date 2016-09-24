@@ -1,0 +1,15 @@
+@import 'variables';
+
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+
+  min-width: $min-width-supported;
+  min-height: $min-height-supported;
+}

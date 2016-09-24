@@ -1,0 +1,16 @@
+@import '../../assets/styles/mixins';
+@import '../../assets/styles/variables';
+
+
+:host {
+ @include absolutely-centered();
+ width: $min-width-supported;
+ height: $min-height-supported;
+}
+
+.register-form, .login-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

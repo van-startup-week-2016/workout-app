@@ -1,0 +1,60 @@
+<div class="register-form" *ngIf="registerView">
+    <h1>
+      Sign Up
+    </h1>
+    <form (ngSubmit)="onRegisterSubmit()" #registerForm="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" required
+          [(ngModel)]="email" (ngModelChange)="resetPlaceholders()"
+          [placeholder]="registerEmailPlaceholder"
+        >
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" required
+          [(ngModel)]="password" (ngModelChange)="resetPlaceholders()"
+          [placeholder]="registerPasswordPlaceholder"
+        >
+      </div>
+      <div>
+        <input type="password" class="form-control" required
+          [(ngModel)]="confirmPassword" (ngModelChange)="resetPlaceholders()"
+          [placeholder]="registerConfirmPasswordPlaceholder"
+        >
+      </div>
+      <button type="submit" [disabled]="!registerForm.form.valid">
+        SIGN UP
+      </button>
+    </form>
+
+    <a (click)="switchView('login')">
+      Already have an account?
+    </a>
+</div>
+
+<div class="login-form" *ngIf="loginView">
+  <h1>
+    Login
+  </h1>
+  <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
+    <div class="form-group">
+      <input type="text" class="form-control" required
+        [(ngModel)]="email" (ngModelChange)="resetPlaceholders()"
+        [placeholder]="loginEmailPlaceholder"
+      >
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" required
+        [(ngModel)]="password" (ngModelChange)="resetPlaceholders()"
+        [placeholder]="loginPasswordPlaceholder"
+      >
+    </div>
+
+    <button type="submit" [disabled]="!loginForm.form.valid">
+      LOGIN
+    </button>
+  </form>
+
+  <a (click)="switchView('register')">
+    Don't have an account?
+  </a>
+</div>
