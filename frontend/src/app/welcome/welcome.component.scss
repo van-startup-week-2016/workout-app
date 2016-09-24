@@ -14,3 +14,41 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+#login-product-name-drop {
+  font-family: sans-serif;
+  color: #2D628A;
+  display: inline;
+  font-weight: 100;
+  font-size: 90px;
+  margin-right: -27px;
+}
+
+#login-product-name-down {
+  font-family: sans-serif;
+  color:floralwhite;
+  display: inline;
+  font-weight: 800;
+}
+
+#login-header {
+  color:white;
+  text-align: center;
+}
+
+.form-control {
+  width: 288px;
+  height: 55px;
+  margin-bottom: 20px;
+  background-color: white !important;
+  border-radius: 0.5rem;
+  display: inline-block;
+  text-align: center;
+}
+
+button {
+    color: white;
+    width: 288px;
+    border-radius: 0.5rem;
+    height: 40px;
+}

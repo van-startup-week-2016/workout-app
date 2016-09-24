@@ -2,6 +2,7 @@
 
 
 html {
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
 }
@@ -9,7 +10,10 @@ html {
 body {
   height: 100%;
   width: 100%;
+  font-family: sans-serif;
 
   min-width: $min-width-supported;
   min-height: $min-height-supported;
+  background: url(http://cdn.playbuzz.com/cdn/43982114-ab7f-4136-89e5-f4a2524fe2bc/202e9e0c-fc34-40ae-8430-5a6c64f55e2f.jpg) no-repeat 50% 100% fixed;
+  background-size: cover;
 }
