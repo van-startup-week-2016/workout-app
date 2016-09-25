@@ -15,7 +15,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=5eSM88TFzAs",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "2": {
@@ -25,7 +26,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=k53ogCacHIQ",
-    insanelyHard: true
+    insanelyHard: true,
+    multiplier: 3
   },
 
   "3": {
@@ -35,7 +37,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=ihvdd0rPTiU",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "4": {
@@ -45,7 +48,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=J0DnG1_S92I",
-    insanelyHard: true
+    insanelyHard: true,
+    multiplier: 3
   },
 
   "5": {
@@ -55,7 +59,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=6kALZikXxLc",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "6": {
@@ -65,7 +70,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=pSHjTRCQxIw",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 1
   },
 
   "7": {
@@ -75,7 +81,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=jDwoBqPH0jk",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "8": {
@@ -85,7 +92,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=jGQ8_IMPQOY",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "9": {
@@ -95,7 +103,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=u1JSSvzwh3I",
-    insanelyHard: true
+    insanelyHard: true,
+    multiplier: 4
   },
 
   "10": {
@@ -105,7 +114,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=dmYwZH_BNd0",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 1
   },
 
   "11": {
@@ -115,7 +125,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody, exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=3uFcOWz9qN8",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 3
   },
 
   "12": {
@@ -125,7 +136,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody, exerciseType.upperBody, exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=DyeZM-_VnRc",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "13": {
@@ -135,7 +147,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=COKYKgQ8KR0",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "14": {
@@ -145,7 +158,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=U4s4mEQ5VqU",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   },
 
   "15": {
@@ -155,7 +169,8 @@ const exercises: exerciseHash = {
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=r7oBejx1PHM",
-    insanelyHard: false
+    insanelyHard: false,
+    multiplier: 2
   }
 };
 
@@ -207,6 +222,7 @@ export class HomeComponent implements OnInit {
     setInterval(() => {
       this.authService.account()
       .subscribe((user) => {
+        this.user = user;
         this.workouts = user.workouts.map((workout) => {
           let frontEndWorkout: workoutForFrontend = {
             date: workout.date,

@@ -9,6 +9,7 @@ import { userModel } from './models/user.model';
 import { appRoutes, user } from './types';
 import { collection } from './db';
 import { sendMessage } from './message';
+import { exercises } from './exercises';
 
 /**
  * All routes by default will be assumed to require authentication, routes that
@@ -123,6 +124,10 @@ export const routes: appRoutes = {
             if(timeOfWorkoutWasInThePast && !user.currentWorkout.completed) {
               user.currentWorkout.completed = true;
               user.workouts.push(user.currentWorkout);
+              // add points to user's score
+              const multiplier: number = exercises[user.currentWorkout.exerciseID].multiplier;
+              const pointsToAdd: number = user.currentWorkout.numberOfReps * multiplier;
+              user.score = (user.score || 0) + pointsToAdd;
               Users.save(user);
               return;
             }

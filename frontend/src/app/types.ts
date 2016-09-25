@@ -25,7 +25,7 @@ export interface user {
   badges?: mongoID[];
   workouts?: workout[];
   preferences?: preferences;
-  totalPoints?: number; // starts at 0
+  score?: number; // starts at 0
   currentWorkout?: workout;
 }
 
@@ -82,6 +82,8 @@ export interface exercise {
   howToLink: string; // links to website explaining exercise form
   types: exerciseType[];
   insanelyHard: boolean;
+  // We will times repNumber * multiplier. Jumping jack should be multiplier of 1.
+  multiplier: number;
 }
 
 /**
