@@ -140,7 +140,7 @@ a:hover {
 } /* Made with http://icomoon.io/ */
 
 .cbp_tmtimeline {
-	margin: 30px 0 0 0;
+	margin: 0;
 	padding: 0;
 	list-style: none;
 	position: relative;
@@ -163,26 +163,15 @@ a:hover {
 	display: block;
 	width: 25%;
 	padding-right: 100px;
+	padding-top: 39px;
 	position: absolute;
 }
 
 .cbp_tmtimeline > li .cbp_tmtime span {
 	display: block;
 	text-align: right;
-}
-
-.cbp_tmtimeline > li .cbp_tmtime span:first-child {
-	font-size: 0.9em;
-	color: #00C78C;
-}
-
-.cbp_tmtimeline > li .cbp_tmtime span:last-child {
-	font-size: 2.9em;
-	color: #3594cb;
-}
-
-.cbp_tmtimeline > li:nth-child(odd) .cbp_tmtime span:last-child {
-	color: #6cbfee;
+	font-size: 32px;
+	color: #454545;
 }
 
 /* Right content */
