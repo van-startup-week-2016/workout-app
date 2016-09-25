@@ -1,4 +1,5 @@
 <!-- TODO Make the navbar nice-->
+
 <ul class="navbar">
   <li>
     <button class="nav-button" (click)="switchView('home')">
@@ -15,13 +16,17 @@
       FRIENDS
     </button>
   </li>
+  <li>
+    <button class="nav-button" (click)="switchView('challenges')">
+      CHALLENGES
+    </button>
+  </li>
   <li style="float:right">
     <button class="nav-button" (click)="switchView('profile')">
       PROFILE
     </button>
   </li>
 </ul>
-
 
 
 <div *ngIf="viewHome">
@@ -34,6 +39,10 @@
 
 <div *ngIf="viewFriends">
   <app-friends></app-friends>
+</div>
+
+<div *ngIf="viewChallenges">
+  <app-challenges></app-challenges>
 </div>
 
 <div *ngIf="viewStats">
