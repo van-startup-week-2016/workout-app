@@ -107,14 +107,11 @@ export const routes: appRoutes = {
     get: (req, res, next) => {
       // Drops country code '+1'
       const fromPhone = (req.query.From as string).substring(2);
-      console.log(fromPhone);
       collection('users')
       .then((Users) => {
         Users.findOne({ phone: fromPhone })
         .then((user: user) => {
-          console.log("and here?");
           if(user) {
-            console.log("did we get here?");
             res.status(200);
 
             // User has not recieved a text from us yet.
@@ -123,19 +120,12 @@ export const routes: appRoutes = {
             }
             // Check that the date of the workout is earlier than now.
             const timeOfWorkoutWasInThePast: boolean = user.currentWorkout.date.getTime() < new Date().getTime();
-            console.log("in the past", timeOfWorkoutWasInThePast);
-            console.log("is completed", user.currentWorkout.completed);
-            console.log(`Date of workout ${user.currentWorkout.date.getTime()}, date now ${new Date().getTime()}`);
             if(timeOfWorkoutWasInThePast && !user.currentWorkout.completed) {
               user.currentWorkout.completed = true;
               user.workouts.push(user.currentWorkout);
-              console.log("about to save");
               Users.save(user);
               return;
             }
-
-            console.log("User fucked up");
-
 
             // TODO maybe text them back saying they missed it...
           }
