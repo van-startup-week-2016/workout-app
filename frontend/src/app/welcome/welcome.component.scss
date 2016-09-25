@@ -74,7 +74,7 @@ a {
 .form-control {
   width: 288px;
   height: 55px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   background-color: white !important;
   border-radius: 0.5rem;
   display: inline-block;
@@ -92,4 +92,13 @@ button {
     &:hover {
       cursor: pointer;
     }
+}
+
+.the-image-container {
+  text-align: center;
+  padding-top: 30px;
+
+  img {
+    height: 75px;
+  }
 }
