@@ -17,6 +17,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: $grey-black;
+    border-bottom: 3px solid #308ae5;
 }
 
 li > button{
@@ -37,5 +38,5 @@ li a {
 }
 
 li button:hover:not(.active) {
-    color: #46A4DA;
+    color: #308ae5;
 }
