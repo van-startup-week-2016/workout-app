@@ -213,7 +213,6 @@ export class HomeComponent implements OnInit {
     return (completed ? "#00C78C" : "#6cbfee");
   }
 
-  // TODO copy to backend
   private formatAMPM(dateAsString: string) {
     const date = new Date(dateAsString);
     var hours = date.getHours();
