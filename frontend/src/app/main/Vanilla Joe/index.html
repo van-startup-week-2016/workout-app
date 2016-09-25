@@ -1,0 +1,115 @@
+<html>
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Blueprint: Vertical Timeline</title>
+    <div w3-include-html="nav.html"></div>
+
+    <meta name="description" content="Blueprint: Vertical Timeline" />
+    <meta name="keywords" content="timeline, vertical, layout, style, component, web development, template, responsive" />
+    <meta name="author" content="Codrops" />
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="clearfix">
+        <span>Joe Kheeva</span>
+        <h1 style='font-size: 350%;'>Today</h1>
+        <nav>
+        </nav>
+      </header> 
+      <div class="main">
+        <ul class="cbp_tmtimeline">
+          <li>
+            <time class="cbp_tmtime" datetime="2013-04-10 18:30"><span>4/10/13</span> <span>18:30</span></time>
+            <div class="cbp_tmicon cbp_tmicon-phone"></div>
+            <div class="cbp_tmlabel">
+              <h2>&#10004; &nbsp; 20 Push Ups</h2>
+              <p style='margin-left: 43px;'>Great Job!</p>
+            </div>
+          </li>
+          <li>
+            <time class="cbp_tmtime" datetime="2013-04-11T12:04"><span>4/11/13</span> <span>12:04</span></time>
+            <div class="cbp_tmicon cbp_tmicon-screen"></div>
+            <div class="cbp_tmlabel">
+              <h2>&#10004; &nbsp; 20 Sit Ups</h2>
+              <p style='margin-left: 43px;'>New Record for push-ups!</p>
+            </div>
+          </li>
+          <li>
+            <time class="cbp_tmtime" datetime="2013-04-13 05:36"><span>4/13/13</span> <span>05:36</span></time>
+            <div class="cbp_tmicon cbp_tmicon-mail"></div>
+            <div class="cbp_tmlabel">
+              <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 15 Push Ups</h2>
+              <p style='margin-left: 43px;'>Great Job!</p>
+            </div>
+          </li>
+          <li>
+            <time class="cbp_tmtime" datetime="2013-04-18 09:56"><span>4/18/13</span> <span>09:56</span></time>
+            <div class="cbp_tmicon cbp_tmicon-phone"></div>
+            <div class="cbp_tmlabel">
+              <h2>&#10004; &nbsp; 20 Push Ups</h2>
+              <p style='margin-left: 43px;'>Way to go!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <head>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+
+    <p align="center" style='font-size: 260%; padding-bottom: 50px; font-weight: bold;'>
+      Your Week
+    <p>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Move', 'Workouts'],
+          ["Monday", 6],
+          ["Tuesday", 7],
+          ["Wednesday", 6],
+          ["Thursday", 5],
+          ['Friday', 4],
+          ['Saturday', 6],
+          ['Sunday', 4]
+        ]);
+
+        var options = {
+          title: '',
+          width: 900,
+          legend: { position: 'none' },
+          chart: { subtitle: '' },
+          axes: {
+            x: {
+              0: { side: 'top', label: ''} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "80%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+    </script>
+  </head>
+
+  <body>
+    <div id="top_x_div" align='center'; style="width: 900px; height: 500px;"></div>
+  </body>
+
+
+</html>
