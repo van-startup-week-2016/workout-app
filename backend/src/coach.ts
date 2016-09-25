@@ -34,7 +34,11 @@ const moreThanXMinutesOld = (xMinutes: number, date: Date): boolean => {
  */
 const sendWorkout = (user: user): void => {
   const exercise: exercise = exercises[user.currentWorkout.exerciseID];
-  const textBody = exercise.buildText(user.currentWorkout.numberOfReps);
+  const expirationDate = new Date(user.currentWorkout.date.getTime() + minToMilli(user.preferences.minutesBeforeAnotherWorkout));
+
+  const textBody = `${exercise.buildText(user.currentWorkout.numberOfReps)}.
+
+You have until ${formatAMPM(expirationDate)}!`;
 
   sendMessage(user.phone, textBody);
 }
@@ -72,11 +76,27 @@ const minToMilli = (numberOfMinutes: number) => {
 }
 
 /**
+ * Copied from:
+ *
+ * http://stackoverflow.com/questions/8888491/how-do-you-display-javascript-datetime-in-12-hour-am-pm-format
+ */
+const formatAMPM = (date: Date) => {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? parseInt('0'+minutes) : minutes;
+  var strTime = `${hours}:${minutes}${ampm}`;
+  return strTime;
+}
+
+/**
  * Sends a text to the user with a random delay.
  */
 const sendTextWithRandomDelay = (user: user, Users: Collection) => {
   const minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || defaultMinutesBeforeAnotherWorkout;
-  const randomMinutesBeforeText = getRandomBetween(1, minutesBeforeAnotherWorkout / 2);
+  const randomMinutesBeforeText = getRandomBetween(0, minutesBeforeAnotherWorkout / 2);
 
   user.currentWorkout = getWorkoutForUser(user, randomMinutesBeforeText);
 

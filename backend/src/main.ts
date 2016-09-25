@@ -7,7 +7,7 @@ import { server } from './server';
 import { APP_CONFIG } from '../app-config';
 import { startCoaching } from './coach';
 
-const minutesBeforeRescan = 1;
+const minutesBeforeRescan = 0.5;
 
 server.listen(APP_CONFIG.app.port);
 console.log(`Running app on port ${APP_CONFIG.app.port}`);
