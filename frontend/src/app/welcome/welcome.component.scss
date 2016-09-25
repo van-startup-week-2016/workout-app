@@ -1,7 +1,6 @@
 @import '../../assets/styles/mixins';
 @import '../../assets/styles/variables';
 
-
 :host {
  @include absolutely-centered();
  width: $min-width-supported;

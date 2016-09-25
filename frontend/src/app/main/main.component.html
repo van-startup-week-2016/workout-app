@@ -1,3 +1,41 @@
-<p>
-  The Main Page!
-</p>
+<!-- TODO Make the navbar nice-->
+<ul class="navbar">
+  <li>
+    <button class="nav-button" (click)="switchView('home')">
+      TODAY
+    </button>
+  </li>
+  <li>
+    <button class="nav-button" (click)="switchView('stats')">
+      WEEKLY
+    </button>
+  </li>
+  <li>
+    <button class="nav-button" (click)="switchView('friends')">
+      FRIENDS
+    </button>
+  </li>
+  <li style="float:right">
+    <button class="nav-button" (click)="switchView('profile')">
+      PROFILE
+    </button>
+  </li>
+</ul>
+
+
+
+<div *ngIf="viewHome">
+  <app-home></app-home>
+</div>
+
+<div *ngIf="viewProfile">
+  <app-profile></app-profile>
+</div>
+
+<div *ngIf="viewFriends">
+  <app-friends></app-friends>
+</div>
+
+<div *ngIf="viewStats">
+  <app-stats></app-stats>
+</div>

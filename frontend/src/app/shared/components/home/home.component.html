@@ -1,0 +1,22 @@
+<div class="container">
+  <header class="clearfix">
+    <span>{{user.name || user.email }}</span>
+    <h1 style='font-size: 350%;'>Today</h1>
+  </header>
+  <div class="main">
+    <ul class="cbp_tmtimeline">
+      <li *ngFor="let workout of workouts; let i = index">
+        <time class="cbp_tmtime"><span>{{ formatAMPM(workout.date) }}</span></time>
+        <div class="cbp_tmicon cbp_tmicon-phone"></div>
+        <div [style.background-color]="getColorForCompleted(workout.completed)" class="cbp_tmlabel">
+          <h2 style = 'color: #fff'>
+            <span *ngIf="workout.completed">&#10004; &nbsp;</span>
+            <span *ngIf="!workout.completed">&#10005; &nbsp;</span>
+            {{ workout.numberOfReps }} {{ workout.exercise.name }}
+          </h2>
+          <p style='margin-left: 43px;'>{{ getQuote(workout.completed, i) }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
