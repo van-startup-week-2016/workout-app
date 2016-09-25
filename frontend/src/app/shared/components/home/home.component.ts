@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { GlobalStateService } from '../../';
+import { GlobalStateService, AuthService } from '../../';
 import { storageType, user, workout, workoutForFrontend, exerciseHash, exerciseType } from '../../../types';
 
 
@@ -194,7 +194,7 @@ export class HomeComponent implements OnInit {
   private workouts: workoutForFrontend[];
   private user: user;
 
-  constructor(private globalStateService: GlobalStateService) {
+  constructor(private globalStateService: GlobalStateService, private authService: AuthService) {
     this.user = this.globalStateService.read('user', storageType.LocalStorage);
     this.workouts = this.user.workouts.map((workout) => {
       let frontEndWorkout: workoutForFrontend = {
@@ -205,6 +205,22 @@ export class HomeComponent implements OnInit {
       };
       return frontEndWorkout;
     }).reverse();
+
+    // Every 1 seconds, update user.
+    setInterval(() => {
+      this.authService.account()
+      .subscribe((user) => {
+        this.workouts = user.workouts.map((workout) => {
+          let frontEndWorkout: workoutForFrontend = {
+            date: workout.date,
+            exercise: exercises[workout.exerciseID],
+            completed: workout.completed,
+            numberOfReps: workout.numberOfReps
+          };
+          return frontEndWorkout;
+        }).reverse();
+      });
+    }, 1 * 1000);
    }
 
   ngOnInit() { }

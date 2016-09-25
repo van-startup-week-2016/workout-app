@@ -94,4 +94,26 @@ export class AuthService extends BaseService {
         return Observable.of(false);
       });
   }
+
+  /**
+   * Queries for account, does not check localStorage, this is purposefully to
+   * query the API, use isLoggedIn for a cached faster response (locaStorage).
+   */
+  public account(): Observable<user> {
+    return this.http().get('/api/account')
+      .map((response) => {
+        const user = this.extractData(response);
+        console.log(user);
+        const loggedIn = true;
+        this.globalStateService.write({ user, loggedIn }, storageType.LocalStorage);
+        return user;
+      })
+      .catch((errorResponse) => {
+        console.log("not logged in");
+        const loggedIn = false;
+        this.globalStateService.write({ loggedIn }, storageType.LocalStorage);
+        this.globalStateService.remove("user", storageType.LocalStorage);
+        return Observable.of(undefined);
+      });
+  }
 }
