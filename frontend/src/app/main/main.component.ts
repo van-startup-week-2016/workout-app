@@ -4,7 +4,7 @@ import { HomeComponent } from '../shared/components/home';
 import { ProfileComponent } from '../shared/components/profile';
 import { FriendsComponent } from '../shared/components/friends';
 import { StatsComponent } from '../shared/components/stats';
-
+import { ChallengesComponent } from '../shared/components/challenges';
 
 @Component({
   moduleId: module.id,
@@ -15,6 +15,7 @@ import { StatsComponent } from '../shared/components/stats';
     HomeComponent,
     ProfileComponent,
     FriendsComponent,
+    ChallengesComponent,
     StatsComponent
   ]
 })
@@ -24,6 +25,7 @@ export class MainComponent implements OnInit {
   private viewProfile: boolean;
   private viewFriends: boolean;
   private viewStats: boolean;
+  private viewChallenges: boolean;
 
   constructor() { }
 
@@ -32,6 +34,7 @@ export class MainComponent implements OnInit {
     this.viewProfile = false;
     this.viewFriends = false;
     this.viewStats = false;
+    this.viewChallenges = false;
   }
 
   /**
@@ -49,24 +52,35 @@ export class MainComponent implements OnInit {
         viewHome: true,
         viewProfile: false,
         viewFriends: false,
+        viewChallenges: false,
         viewStats: false
       },
       "profile": {
         viewHome: false,
         viewProfile: true,
         viewFriends: false,
+        viewChallenges: false,
         viewStats: false
       },
       "friends": {
         viewHome: false,
         viewProfile: false,
         viewFriends: true,
+        viewChallenges: false,
+        viewStats: false
+      },
+      "challenges": {
+        viewHome: false,
+        viewProfile: false,
+        viewFriends: false,
+        viewChallenges: true,
         viewStats: false
       },
       "stats": {
         viewHome: false,
         viewProfile: false,
         viewFriends: false,
+        viewChallenges: false,
         viewStats: true
       }
     }

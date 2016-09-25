@@ -1,4 +1,31 @@
 <!-- TODO Make the navbar nice-->
+
+
+<nav  id="menu" class="nav">	
+	<ul>
+		<li>
+			<a  href="#" title="">
+				<span  class="icon"> <i aria-hidden="true"  class="icon-home"></i></span><span>Home</span>
+			</a>
+		</li>
+		<li>		
+			<a href="#" title=""><span class="icon"> <i aria-hidden="true" class="icon-services"></i></span><span>Services</span></a>	
+		</li>	
+		<li>
+			<a  href="#" title=""><span  class="icon"><i  aria-hidden="true" class="icon-portfolio"></i></span><span>Portfolio</span></a>
+		</li>
+		<li>
+			<a  href="#" title=""><span  class="icon"><i  aria-hidden="true" class="icon-blog"></i></span><span>Blog</span></a>	
+		</li>
+		<li>
+			<a  href="#" title=""><span  class="icon"><i  aria-hidden="true" class="icon-team"></i></span><span>The  team</span></a>	
+		</li>
+		<li>
+			<a  href="#" title=""><span  class="icon"><i  aria-hidden="true" class="icon-contact"></i></span><span>Contact</span></a>
+		</li>
+	</ul>
+</nav>
+
 <ul class="navbar">
   <li>
     <button class="nav-button" (click)="switchView('home')">
@@ -15,13 +42,17 @@
       FRIENDS
     </button>
   </li>
+  <li>
+    <button class="nav-button" (click)="switchView('challenges')">
+      CHALLENGES
+    </button>
+  </li>
   <li style="float:right">
     <button class="nav-button" (click)="switchView('profile')">
       PROFILE
     </button>
   </li>
 </ul>
-
 
 
 <div *ngIf="viewHome">
@@ -34,6 +65,10 @@
 
 <div *ngIf="viewFriends">
   <app-friends></app-friends>
+</div>
+
+<div *ngIf="viewChallenges">
+  <app-challenges></app-challenges>
 </div>
 
 <div *ngIf="viewStats">
