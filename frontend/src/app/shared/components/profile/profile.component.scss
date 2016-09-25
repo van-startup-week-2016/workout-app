@@ -4,6 +4,9 @@
   margin: auto;
   width: 50%;
   height: 100%;
+  background-color: $profile-background;
+  padding-left: 10px;
+  padding-top: 1px;
 }
 
 
@@ -138,4 +141,103 @@
 }
 #time-range {
   width: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// IMPORTED COLLAPSABLE SECTION
+#toggleUpperBody, #toggleLowerBody, #toggleCore, #fullBody{
+  display: none;
+  visibility: hidden;
+}
+label {
+  display: block;
+  padding: 0.5em;
+  text-align: center;
+  border-bottom: 1px solid #CCC;
+  color: $black;
+}
+label:hover {
+  color: #000;
+}
+label::before {
+  font-family: Consolas, monaco, monospace;
+  font-weight: bold;
+  font-size: 15px;
+  content: "+";
+  vertical-align: text-top;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+  background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+}
+#expandUpperBody {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  color: $black;
+}
+section {
+  padding: 0 20px;
+}
+#toggleUpperBody:checked ~ #expandUpperBody {
+  height: 100px;
+}
+#toggleUpperBody:checked ~ label::before {
+  content: "-";
+}
+
+#expandLowerBody {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  color: $black;
+}
+#toggleLowerBody:checked ~ #expandLowerBody {
+  height: 125px;
+}
+#toggleLowerBody:checked ~ label::before {
+  content: "-";
+}
+
+#expandCore {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  color: $black;
+}
+#toggleCore:checked ~ #expandCore {
+  height: 50px;
+}
+#toggleCore:checked ~ label::before {
+  content: "-";
+}
+
+#expandFullBody {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s;
+  color: $black;
+}
+#fullBody:checked ~ #expandFullBody {
+  height: 50px;
+}
+#fullBody:checked ~ label::before {
+  content: "-";
 }
