@@ -159,6 +159,30 @@ const exercises: exerciseHash = {
   }
 };
 
+const goodQuotes: string[] = [
+  "Great job!",
+  "Congrats!",
+  "Way to go!",
+  "Rock on!",
+  "You're a beast!",
+  "Work it baby!",
+  "You got it!",
+  "Yeah!",
+  "Beautiful!",
+  "Like a pro!"
+];
+
+const badQuotes: string[] = [
+  "Get the next one!",
+  "You gotta fail to succeed!",
+  "Never give up!",
+  "Pain is temporary. Quitting lasts forever.",
+  "It happens to the best of us!",
+  "Nobody's perfect!",
+  "No one saw that...",
+  "I've seen you do better."
+];
+
 @Component({
   moduleId: module.id,
   selector: 'app-home',
@@ -200,6 +224,23 @@ export class HomeComponent implements OnInit {
     minutes = minutes < 10 ? '0'+minutes : minutes;
     var strTime = `${hours}:${minutes}${ampm}`;
     return strTime;
+  }
+
+  /**
+   * Gets the motivations quote to display depending on whether it was completed
+   * or not.
+   */
+  private getQuote(completed: boolean, index: number): string {
+    if (completed) {
+      const arrayLength = goodQuotes.length;
+      const newIndex = index % arrayLength;
+      const quote: string = goodQuotes[newIndex];
+      return quote;
+    }
+    const arrayLength = badQuotes.length;
+    const newIndex = index % arrayLength;
+    const quote: string = badQuotes[newIndex];
+    return quote;
   }
 
 
