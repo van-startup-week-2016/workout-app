@@ -2,8 +2,10 @@
 
 import { user, exercise, workout } from './types';
 import { collection } from './db';
-import { sendMessage } from './message.ts';
+import { sendMessage } from './message';
 import { exercises } from './exercises';
+import { Collection } from 'mongodb';
+
 
 /**
  * If no user preferences set, will give a one hour break time.
@@ -70,33 +72,36 @@ const minToMilli = (numberOfMinutes: number) => {
 }
 
 /**
+ * Sends a text to the user with a random delay.
+ */
+const sendTextWithRandomDelay = (user: user, Users: Collection) => {
+  const minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || defaultMinutesBeforeAnotherWorkout;
+  const randomMinutesBeforeText = getRandomBetween(1, minutesBeforeAnotherWorkout / 2);
+
+  user.currentWorkout = getWorkoutForUser(user, randomMinutesBeforeText);
+
+  Users.save(user)
+  .then(() => {
+    setTimeout(() => {
+      sendWorkout(user);
+    }, minToMilli(randomMinutesBeforeText));
+  });
+};
+
+/**
  * Will do a scan for users that need a workout, texting them accordingly.
  */
 const scanForUsersNeedingAWorkout = () => {
   collection('users')
   .then((Users) => {
-    /**
-     * Sends a text to the user with a random delay.
-     */
-    const sendTextWithRandomDelay = (user: user) => {
-      const minutesBeforeAnotherWorkout = user.preferences.minutesBeforeAnotherWorkout || defaultMinutesBeforeAnotherWorkout;
-      const randomMinutesBeforeText = getRandomBetween(1, minutesBeforeAnotherWorkout / 2);
-
-      user.currentWorkout = getWorkoutForUser(user, randomMinutesBeforeText);
-
-      Users.save(user)
-      .then(() => {
-        setTimeout(sendWorkout(user), minToMilli(randomMinutesBeforeText));
-      });
-    };
-
     // Get all users.
     Users.find({}).toArray()
     .then((arrayOfUsers: user[]) => {
       for(let user of arrayOfUsers) {
         // If they have never had a workout...
         if(user.currentWorkout == undefined) {
-          sendTextWithRandomDelay(user);
+          sendTextWithRandomDelay(user, Users);
+          console.log("Sending text to user, ", user.phone);
           continue;
         }
 
@@ -105,15 +110,17 @@ const scanForUsersNeedingAWorkout = () => {
         if(moreThanXMinutesOld(minutesBeforeAnotherWorkout, user.currentWorkout.date)) {
           // If they did complete it, it has already been copied.
           if(user.currentWorkout.completed == true) {
-            sendTextWithRandomDelay(user);
+            sendTextWithRandomDelay(user, Users);
+            console.log("Sending text to user, ", user.phone);
             continue;
           }
           // If they didn't complete it, we must move it to their workouts.
           user.workouts.push(user.currentWorkout);
-          sendTextWithRandomDelay(user);
+          sendTextWithRandomDelay(user, Users);
+          console.log("Sending text to user, ", user.phone);
         }
       }
-    })
+    });
   })
 };
 
@@ -121,5 +128,6 @@ const scanForUsersNeedingAWorkout = () => {
  * Runs the `scanForUsersNeedingAWorkout` every `minuteIntervalForScan` minutes.
  */
 export const startCoaching = (minuteIntervalForScan: number) => {
+  scanForUsersNeedingAWorkout();
   setInterval(scanForUsersNeedingAWorkout, minToMilli(minuteIntervalForScan));
 };
