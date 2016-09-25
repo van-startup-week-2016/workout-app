@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
                     }
                 } else {
                     hours1 = hours1;
-                    minutes1 = minutes1 + " AM"; 
+                    minutes1 = minutes1 + " AM";
                 }
                 if (hours1 == 0) {
                     hours1 = 12;

@@ -17,6 +17,9 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: $grey-black;
+    border-bottom-width: 3px;
+    border-bottom: solid;
+    border-bottom-color: $orange;
 }
 
 li > button{
