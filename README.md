@@ -1,9 +1,6 @@
 # DropDown
 
-A mobile-friendly web application that helps you workout! It sends you texts
-every once in a while (you decide how long) when you are available (you decide
-when) with some exercises! When finished just send a text back saying "yes" or
-"yay!" or "bananas". It must be one of those three.
+A mobile-friendly web application that helps you workout! Based on your availability and workout preferences, you will receive texts that encourage quick workout sessions that can be done without any equiptment or change of apparel. If you complete a session just send a text back saying "yes", "yay!" or "bananas" and we will monitor your progress which is available immediately and at all times on our website.
 
  Quick 30 second workouts throughout the day can be un onabtrusive way to stay
  in shape!
