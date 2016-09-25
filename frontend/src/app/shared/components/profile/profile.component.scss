@@ -241,3 +241,8 @@ section {
 #fullBody:checked ~ label::before {
   content: "-";
 }
+
+#profileSubmitForm {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
