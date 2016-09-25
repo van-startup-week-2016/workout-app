@@ -1,10 +1,25 @@
 @import '../../assets/styles/mixins';
 @import '../../assets/styles/variables';
 
-:host {
+.welcome-box {
  @include absolutely-centered();
  width: $min-width-supported;
  height: $min-height-supported;
+}
+
+.background-photo {
+  z-index: -1;
+  position: aboslute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("http://www.cityprofitness.com/wp-content/uploads/2014/08/bigstock-woman-workout-fitness-posture-21838448.jpg")  no-repeat 50% 100% fixed;
+  background-size: cover;
+}
+
+.spacing {
+  height: 30px;
 }
 
 .register-form, .login-form {
@@ -30,7 +45,28 @@
   font-weight: 800;
 }
 
-#login-header {
+input {
+  font-size: 20px;
+}
+
+.a-wrapper {
+  text-align: center;
+}
+
+a {
+  font-size: 75%;
+  color: #1D628A;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.small-spacing {
+  height: 10px;
+}
+
+.h1-header {
   color:white;
   text-align: center;
 }
@@ -47,7 +83,13 @@
 
 button {
     color: white;
+    background-color: #68C3D8;
     width: 288px;
     border-radius: 0.5rem;
+    border: none;
     height: 40px;
+
+    &:hover {
+      cursor: pointer;
+    }
 }

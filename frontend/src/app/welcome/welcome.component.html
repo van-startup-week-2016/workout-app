@@ -1,66 +1,67 @@
-<div class="register-form" *ngIf="registerView">
-    <h1>
+<div class="welcome-box">
+
+    <div class="spacing"></div>
+
+    <h2 id="login-product-name-drop">
+      Drop
+    </h2>
+    <h2 id="login-product-name-down">
+      Down
+    </h2>
+
+  <div class="register-form" *ngIf="registerView">
+    <h3 class="h1-header">
       Sign Up
-    </h1>
+    </h3>
     <form (ngSubmit)="onRegisterSubmit()" #registerForm="ngForm">
       <div class="form-group">
-        <input type="text" class="form-control" required
-          [(ngModel)]="email" (ngModelChange)="resetPlaceholders()"
-          [placeholder]="registerEmailPlaceholder"
-        >
+        <input type="text" class="form-control" required [(ngModel)]="email" (ngModelChange)="resetPlaceholders()" [placeholder]="registerEmailPlaceholder">
       </div>
       <div class="form-group">
-        <input type="password" class="form-control" required
-          [(ngModel)]="password" (ngModelChange)="resetPlaceholders()"
-          [placeholder]="registerPasswordPlaceholder"
-        >
+        <input type="password" class="form-control" required [(ngModel)]="password" (ngModelChange)="resetPlaceholders()" [placeholder]="registerPasswordPlaceholder">
       </div>
       <div>
-        <input type="password" class="form-control" required
-          [(ngModel)]="confirmPassword" (ngModelChange)="resetPlaceholders()"
-          [placeholder]="registerConfirmPasswordPlaceholder"
-        >
+        <input type="password" class="form-control" required [(ngModel)]="confirmPassword" (ngModelChange)="resetPlaceholders()"
+          [placeholder]="registerConfirmPasswordPlaceholder">
       </div>
       <button type="submit" [disabled]="!registerForm.form.valid">
         SIGN UP
       </button>
     </form>
+    <div class="small-spacing"></div>
 
-    <a (click)="switchView('login')">
-      Already have an account?
-    </a>
-</div>
-
-<div class="login-form" *ngIf="loginView">
-  <h1 id="login-product-name-drop">
-    Drop
-  </h1>
-  <h1 id="login-product-name-down">
-    Down
-  </h1>
-  <h1 id="login-header">
-    Log In
-  </h1>
-  <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
-    <div class="form-group">
-      <input type="text" class="form-control" required
-        [(ngModel)]="email" (ngModelChange)="resetPlaceholders()"
-        [placeholder]="loginEmailPlaceholder"
-      >
+    <div class="a-wrapper">
+      <a (click)="switchView('login')">
+        Already have an account?
+      </a>
     </div>
-    <div class="form-group">
-      <input type="password" class="form-control" required
-        [(ngModel)]="password" (ngModelChange)="resetPlaceholders()"
-        [placeholder]="loginPasswordPlaceholder"
-      >
-    </div>
+  </div>
 
-    <button type="submit" [disabled]="!loginForm.form.valid">
+  <div class="login-form" *ngIf="loginView">
+    <h3 class="h1-header">
+      Log In
+    </h3>
+    <form (ngSubmit)="onLoginSubmit()" #loginForm="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" required [(ngModel)]="email" (ngModelChange)="resetPlaceholders()" [placeholder]="loginEmailPlaceholder">
+      </div>
+      <div class="form-group">
+        <input type="password" autocomplete="new-password" class="form-control" required [(ngModel)]="password" (ngModelChange)="resetPlaceholders()" [placeholder]="loginPasswordPlaceholder">
+      </div>
+
+      <button type="submit" [disabled]="!loginForm.form.valid">
       LOGIN
     </button>
-  </form>
+    </form>
 
-  <a (click)="switchView('register')">
-    Don't have an account?
-  </a>
+    <div class="small-spacing"></div>
+    <div class="a-wrapper">
+      <a (click)="switchView('register')">
+        Don't have an account?
+      </a>
+    </div>
+  </div>
+
 </div>
+
+<div class="background-photo"></div>
