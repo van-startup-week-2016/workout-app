@@ -79,6 +79,7 @@ export interface preferences {
 export interface exercise {
   name: string; //e.g. "pushup"
   buildText: (numberOfReps: number) => string; // eg. functions returns "Do <numberOfReps> pushups"
+  buildTitle: (numberOfReps: number) => string;
   howToLink: string; // links to website explaining exercise form
   types: exerciseType[];
   insanelyHard: boolean;

@@ -128,6 +128,18 @@ a:hover {
 	content: "\f060";
 }
 
+.right-box {
+	float: right;
+	display: inline-block;
+	text-align: right;
+}
+
+.plus-xp {
+	float: right;
+	display: inline-block;
+	font-size: 75%;
+}
+
 @font-face {
 	font-family: 'ecoico';
 	src:url('../fonts/timelineicons/ecoico.eot');

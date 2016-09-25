@@ -1,7 +1,7 @@
 @import '../../assets/styles/variables';
 
 .nav-button {
-  background-color: $grey;
+  background-color: $grey-black;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -21,7 +21,7 @@ ul {
 
 li > button{
     float: left;
-    border-right:1px solid #bbb;
+    border: none;
 }
 
 li:last-child {
@@ -37,5 +37,5 @@ li a {
 }
 
 li button:hover:not(.active) {
-    background-color: $orange;
+    color: #46A4DA;
 }

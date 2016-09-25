@@ -1,8 +1,10 @@
 <div class="container">
-  <header class="clearfix">
-    <span>{{user.name || user.email }}</span>
-    <span>EXP: {{ user.score || 0 }}</span>
-    <h1 style='font-size: 350%;'>Today</h1>
+  <header class="clearfix" style="padding-top: 30px;">
+    <h1 style='font-size: 350%; float: left; display: inline-block;'>Today</h1>
+    <span class="right-box">
+      <p>{{user.name || user.email }}</p>
+      EXP {{ user.score || 0 }}
+    </span>
   </header>
   <div class="main">
     <ul class="cbp_tmtimeline">
@@ -13,9 +15,10 @@
           <h2 style = 'color: #fff'>
             <span *ngIf="workout.completed">&#10004; &nbsp;</span>
             <span *ngIf="!workout.completed">&#10005; &nbsp;</span>
-            {{ workout.numberOfReps }} {{ workout.exercise.name }}
+            <span *ngIf="workout.completed" class="plus-xp"> +{{ workout.numberOfReps * workout.exercise.multiplier }} EXP</span>
+            {{ workout.exercise.buildTitle(workout.numberOfReps) }}
           </h2>
-          <p style='margin-left: 43px;'>{{ getQuote(workout.completed, i) }} <span *ngIf="workout.completed"> +{{ workout.numberOfReps * workout.exercise.multiplier }} EXP</span></p>
+          <p style='margin-left: 43px;'>{{ getQuote(workout.completed, i) }}</p>
         </div>
       </li>
     </ul>

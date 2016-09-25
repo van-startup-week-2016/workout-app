@@ -13,6 +13,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 regular push-up" : `Do ${numberOfReps} regular push-ups`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Regular Push-Up" : `${numberOfReps} Regular Push-Ups`);
+    },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=5eSM88TFzAs",
     insanelyHard: false,
@@ -23,6 +26,9 @@ const exercises: exerciseHash = {
     name: "Clap Push-Up",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 clap push-up" : `Do ${numberOfReps} clap push-ups`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Clap Push-Up" : `${numberOfReps} Clap Push-Ups`);
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=k53ogCacHIQ",
@@ -35,6 +41,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 military push-up" : `Do ${numberOfReps} military push-ups`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Military Push-Up" : `${numberOfReps} Military Push-Ups`);
+    },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=ihvdd0rPTiU",
     insanelyHard: false,
@@ -45,6 +54,9 @@ const exercises: exerciseHash = {
     name: "Diamond Push-Up",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 diamond push-up" : `Do ${numberOfReps} diamond push-ups`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Diamond Push-Up" : `${numberOfReps} Diamond Push-Ups`);
     },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=J0DnG1_S92I",
@@ -57,6 +69,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 chair dip" : `Do ${numberOfReps} chair dips`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Chair Dip" : `${numberOfReps} Chair Dips`);
+    },
     types: [exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=6kALZikXxLc",
     insanelyHard: false,
@@ -67,6 +82,9 @@ const exercises: exerciseHash = {
     name: "Plank",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 second of plank" : `Do ${numberOfReps} seconds of plank`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Second of Plank" : `${numberOfReps} Seconds of Plank`);
     },
     types: [exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=pSHjTRCQxIw",
@@ -79,6 +97,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 sit-up" : `Do ${numberOfReps} sit-ups`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Sit-Up" : `${numberOfReps} Sit-Ups`);
+    },
     types: [exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=jDwoBqPH0jk",
     insanelyHard: false,
@@ -89,6 +110,9 @@ const exercises: exerciseHash = {
     name: "Squat",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 squat" : `Do ${numberOfReps} squats`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Squat" : `${numberOfReps} Squats`);
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=jGQ8_IMPQOY",
@@ -101,6 +125,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 one-legged squat" : `Do ${numberOfReps} one-legged squats`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 One-Legged Squat" : `${numberOfReps} One-Legged Squats`);
+    },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=u1JSSvzwh3I",
     insanelyHard: true,
@@ -111,6 +138,9 @@ const exercises: exerciseHash = {
     name: "Jumping Jack",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 jumping jack" : `Do ${numberOfReps} jumping jacks`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Jumping Jack" : `${numberOfReps} Jumping Jacks`);
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=dmYwZH_BNd0",
@@ -123,6 +153,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 burpee" : `Do ${numberOfReps} burpees`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Burpee" : `${numberOfReps} Burpees`);
+    },
     types: [exerciseType.lowerBody, exerciseType.upperBody],
     howToLink: "https://www.youtube.com/watch?v=3uFcOWz9qN8",
     insanelyHard: false,
@@ -133,6 +166,9 @@ const exercises: exerciseHash = {
     name: "Mountain Climber",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 mountain climber" : `Do ${numberOfReps} mountain climbers`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Mountain Climber" : `${numberOfReps} Mountain Climbers`);
     },
     types: [exerciseType.lowerBody, exerciseType.upperBody, exerciseType.core],
     howToLink: "https://www.youtube.com/watch?v=DyeZM-_VnRc",
@@ -145,6 +181,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 lunge" : `Do ${numberOfReps} lunges`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Lunge" : `${numberOfReps} Lunges`);
+    },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=COKYKgQ8KR0",
     insanelyHard: false,
@@ -156,6 +195,9 @@ const exercises: exerciseHash = {
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 squat jump" : `Do ${numberOfReps} squat jumps`);
     },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Squat Jump" : `${numberOfReps} Squat Jumps`);
+    },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=U4s4mEQ5VqU",
     insanelyHard: false,
@@ -166,6 +208,9 @@ const exercises: exerciseHash = {
     name: "Tuck Jump",
     buildText: (numberOfReps) => {
       return (numberOfReps == 1 ? "Do 1 tuck jump" : `Do ${numberOfReps} tuck jumps`);
+    },
+    buildTitle: (numberOfReps) => {
+      return (numberOfReps == 1 ? "1 Tuck Jump" : `${numberOfReps} Tuck Jumps`);
     },
     types: [exerciseType.lowerBody],
     howToLink: "https://www.youtube.com/watch?v=r7oBejx1PHM",
