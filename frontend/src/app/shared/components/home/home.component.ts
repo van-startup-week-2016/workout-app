@@ -173,14 +173,11 @@ const goodQuotes: string[] = [
 ];
 
 const badQuotes: string[] = [
-  "Get the next one!",
-  "You gotta fail to succeed!",
-  "Never give up!",
-  "Pain is temporary. Quitting lasts forever.",
-  "It happens to the best of us!",
-  "Nobody's perfect!",
+  "Shhhhhh...",
+  "Crap.",
+  "At least it's a nice blue.",
   "No one saw that...",
-  "I've seen you do better."
+  "Every time you miss a workout, a puppy dies. A cute one."
 ];
 
 @Component({
